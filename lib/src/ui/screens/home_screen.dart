@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_note/src/ui/widgets/item_note.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = "home-screen";
@@ -13,14 +14,9 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: ListView.separated(
           itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 12,
-              ),
-              child: Text("Item $index"),
-            );
+            return ItemNote();
           },
-          separatorBuilder: (context, index) => const Divider(),
+          separatorBuilder: (context, index) => const Divider(height: 1),
           itemCount: 9,
         ),
       ),
