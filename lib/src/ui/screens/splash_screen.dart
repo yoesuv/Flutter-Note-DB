@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_note/src/ui/screens/home_screen.dart';
@@ -23,12 +24,14 @@ class SplashScreen extends StatelessWidget {
     _openHome(context);
 
     return Scaffold(
-      body: Center(
-        child: Text(
-          "Flutter Note Task",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
+      body: const SafeArea(
+        child: Center(
+          child: Text(
+            "Flutter Note Task",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+            ),
           ),
         ),
       ),
@@ -38,12 +41,13 @@ class SplashScreen extends StatelessWidget {
 
   Widget _buildVersion() {
     return SizedBox(
-      height: 33,
-      child: Center(
+      height: Platform.isAndroid ? 33 : 50,
+      child: const Center(
         child: Text(
           "1.0.0",
           style: TextStyle(
-            fontSize: 12,
+            color: Colors.black,
+            fontSize: 14,
           ),
         ),
       ),
