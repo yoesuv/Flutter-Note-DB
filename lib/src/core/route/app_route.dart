@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_note/src/ui/screens/home_screen.dart';
 import 'package:flutter_note/src/ui/screens/splash_screen.dart';
 
 class AppRoute {
@@ -7,6 +8,10 @@ class AppRoute {
       case "/":
         return MaterialPageRoute(builder: (context) {
           return const SplashScreen();
+        });
+      case HomeScreen.routeName:
+        return MaterialPageRoute(builder: (context) {
+          return const HomeScreen();
         });
       default:
         return MaterialPageRoute(builder: (context) {
