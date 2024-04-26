@@ -1,0 +1,1 @@
+const dialogRadius = 16.0;
