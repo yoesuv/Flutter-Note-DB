@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_note/src/core/data/constants.dart';
 import 'package:flutter_note/src/ui/widgets/dialog_content_note.dart';
 import 'package:flutter_note/src/ui/widgets/dialog_delete_all.dart';
+import 'package:flutter_note/src/ui/widgets/dialog_menu.dart';
 import 'package:flutter_note/src/ui/widgets/item_note.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -40,6 +41,30 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  void _showMenuDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.zero,
+          surfaceTintColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(dialogRadius),
+          ),
+          content: DialogMenu(
+            title: "Menu",
+            onEdit: () {
+              Navigator.pop(context);
+            },
+            onDelete: () {
+              Navigator.pop(context);
+            },
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +85,11 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: ListView.separated(
           itemBuilder: (context, index) {
-            return const ItemNote();
+            return ItemNote(
+              onTapMenu: () {
+                _showMenuDialog(context);
+              },
+            );
           },
           separatorBuilder: (context, index) => const Divider(height: 1),
           itemCount: 9,

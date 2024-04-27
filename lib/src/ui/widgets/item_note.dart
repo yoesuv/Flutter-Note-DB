@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
 class ItemNote extends StatelessWidget {
-  const ItemNote({super.key});
+  const ItemNote({
+    super.key,
+    this.onTapMenu,
+  });
+
+  final Function()? onTapMenu;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 8,
-        horizontal: 14,
+      padding: const EdgeInsets.only(
+        top: 8,
+        bottom: 8,
+        left: 14,
       ),
       child: Row(
         mainAxisSize: MainAxisSize.max,
@@ -23,9 +29,9 @@ class ItemNote extends StatelessWidget {
               ],
             ),
           ),
-          InkWell(
-            onTap: () {},
-            child: Icon(
+          IconButton(
+            onPressed: onTapMenu,
+            icon: const Icon(
               Icons.more_vert,
               color: Colors.black,
             ),
