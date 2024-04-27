@@ -9,8 +9,8 @@ abstract class HomeEvent extends Equatable {
 class HomeInitEvent extends HomeEvent {}
 
 class HomeInsertEvent extends HomeEvent {
-  HomeInsertEvent({this.taskModel});
-  final TaskModel? taskModel;
+  HomeInsertEvent({required this.taskModel});
+  final TaskModel taskModel;
   @override
   List<Object?> get props => [taskModel];
 }

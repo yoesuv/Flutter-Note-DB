@@ -1,11 +1,14 @@
 import 'package:equatable/equatable.dart';
+import 'package:objectbox/objectbox.dart';
 
+@Entity()
 class TaskModel extends Equatable {
-  final int? id;
+  @Id()
+  int? id;
   final String? title;
   final String? content;
 
-  const TaskModel({
+  TaskModel({
     this.id,
     this.title,
     this.content,
