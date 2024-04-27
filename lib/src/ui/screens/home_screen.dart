@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_note/src/core/data/constants.dart';
 import 'package:flutter_note/src/ui/widgets/dialog_content_note.dart';
+import 'package:flutter_note/src/ui/widgets/dialog_delete_all.dart';
 import 'package:flutter_note/src/ui/widgets/item_note.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -17,7 +18,23 @@ class HomeScreen extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(dialogRadius),
           ),
-          content: DialogContentNote(),
+          content: const DialogContentNote(title: "Insert New Task"),
+        );
+      },
+    );
+  }
+
+  void _showDeleteAllDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.zero,
+          surfaceTintColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(dialogRadius),
+          ),
+          content: const DialogDeleteAll(title: "Delete All"),
         );
       },
     );
@@ -30,7 +47,9 @@ class HomeScreen extends StatelessWidget {
         title: const Text("My Task"),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              _showDeleteAllDialog(context);
+            },
             icon: const Icon(
               Icons.delete_forever_rounded,
               color: Colors.white,
@@ -41,7 +60,7 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: ListView.separated(
           itemBuilder: (context, index) {
-            return ItemNote();
+            return const ItemNote();
           },
           separatorBuilder: (context, index) => const Divider(height: 1),
           itemCount: 9,
@@ -52,7 +71,7 @@ class HomeScreen extends StatelessWidget {
           _showInsertDialog(context);
         },
         child: const Icon(
-          Icons.add_circle_outline_rounded,
+          Icons.add_circle_rounded,
           color: Colors.white,
         ),
       ),
