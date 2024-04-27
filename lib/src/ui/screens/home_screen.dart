@@ -28,6 +28,15 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("My Task"),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.delete_forever_rounded,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
       body: SafeArea(
         child: ListView.separated(
