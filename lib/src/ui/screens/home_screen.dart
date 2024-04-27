@@ -4,6 +4,7 @@ import 'package:flutter_note/src/core/blocs/home_bloc.dart';
 import 'package:flutter_note/src/core/data/constants.dart';
 import 'package:flutter_note/src/core/events/home_event.dart';
 import 'package:flutter_note/src/core/models/task_model.dart';
+import 'package:flutter_note/src/core/states/home_state.dart';
 import 'package:flutter_note/src/ui/widgets/dialog_content_note.dart';
 import 'package:flutter_note/src/ui/widgets/dialog_delete_all.dart';
 import 'package:flutter_note/src/ui/widgets/dialog_menu.dart';
@@ -43,8 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  void _showDeleteAllDialog(BuildContext context) {
-    showDialog(
+  void _showDeleteAllDialog(BuildContext context) async {
+    final result = await showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
@@ -57,9 +58,15 @@ class _HomeScreenState extends State<HomeScreen> {
         );
       },
     );
+    if (result != null) {
+      final data = result as bool;
+      if (data) {
+        _bloc?.add(HomeDeleteAllEvent());
+      }
+    }
   }
 
-  void _showMenuDialog(BuildContext context) {
+  void _showMenuDialog(BuildContext context, TaskModel task) {
     showDialog(
       context: context,
       builder: (context) {
@@ -76,6 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             onDelete: () {
               Navigator.pop(context);
+              _bloc?.add(HomeDeleteEvent(id: task.id ?? 0));
             },
           ),
         );
@@ -108,16 +116,21 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: SafeArea(
-        child: ListView.separated(
-          itemBuilder: (context, index) {
-            return ItemNote(
-              onTapMenu: () {
-                _showMenuDialog(context);
-              },
-            );
-          },
-          separatorBuilder: (context, index) => const Divider(height: 1),
-          itemCount: 9,
+        child: BlocBuilder<HomeBloc, HomeState>(
+          bloc: _bloc,
+          builder: (context, state) => ListView.separated(
+            itemBuilder: (context, index) {
+              final task = state.listTask[index];
+              return ItemNote(
+                taskModel: task,
+                onTapMenu: () {
+                  _showMenuDialog(context, task);
+                },
+              );
+            },
+            separatorBuilder: (context, index) => const Divider(height: 1),
+            itemCount: state.listTask.length,
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

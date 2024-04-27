@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_note/src/core/models/task_model.dart';
 
 class ItemNote extends StatelessWidget {
   const ItemNote({
     super.key,
+    required this.taskModel,
     this.onTapMenu,
   });
 
+  final TaskModel taskModel;
   final Function()? onTapMenu;
 
   @override
@@ -43,8 +46,8 @@ class ItemNote extends StatelessWidget {
 
   Widget _title() {
     return Text(
-      "Lorem ipsum",
-      style: TextStyle(
+      taskModel.title ?? "",
+      style: const TextStyle(
         color: Colors.black,
         fontSize: 16,
         fontWeight: FontWeight.bold,
@@ -54,8 +57,8 @@ class ItemNote extends StatelessWidget {
 
   Widget _content() {
     return Text(
-      "Lorem ipsum dolor sit amit",
-      style: TextStyle(
+      taskModel.content ?? "",
+      style: const TextStyle(
         color: Colors.black87,
         fontSize: 14,
         fontWeight: FontWeight.normal,
