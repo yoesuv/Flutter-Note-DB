@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_note/src/core/blocs/home_bloc.dart';
 import 'package:flutter_note/src/ui/screens/home_screen.dart';
 import 'package:flutter_note/src/ui/screens/splash_screen.dart';
 
@@ -11,7 +13,10 @@ class AppRoute {
         });
       case HomeScreen.routeName:
         return MaterialPageRoute(builder: (context) {
-          return const HomeScreen();
+          return BlocProvider(
+            create: (context) => HomeBloc(),
+            child: const HomeScreen(),
+          );
         });
       default:
         return MaterialPageRoute(builder: (context) {

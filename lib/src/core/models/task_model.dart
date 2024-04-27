@@ -1,9 +1,11 @@
-class TaskModel {
+import 'package:equatable/equatable.dart';
+
+class TaskModel extends Equatable {
   final int? id;
   final String? title;
   final String? content;
 
-  TaskModel({
+  const TaskModel({
     this.id,
     this.title,
     this.content,
@@ -20,4 +22,11 @@ class TaskModel {
         "title": title,
         "content": content,
       };
+
+  @override
+  List<Object?> get props => [
+        id,
+        title,
+        content,
+      ];
 }

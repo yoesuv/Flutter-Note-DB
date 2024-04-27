@@ -1,16 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_note/src/core/blocs/home_bloc.dart';
 import 'package:flutter_note/src/core/data/constants.dart';
+import 'package:flutter_note/src/core/events/home_event.dart';
+import 'package:flutter_note/src/core/models/task_model.dart';
 import 'package:flutter_note/src/ui/widgets/dialog_content_note.dart';
 import 'package:flutter_note/src/ui/widgets/dialog_delete_all.dart';
 import 'package:flutter_note/src/ui/widgets/dialog_menu.dart';
 import 'package:flutter_note/src/ui/widgets/item_note.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const routeName = "home-screen";
+
   const HomeScreen({super.key});
 
-  void _showInsertDialog(BuildContext context) {
-    showDialog(
+  @override
+  State<StatefulWidget> createState() {
+    return _HomeScreenState();
+  }
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  HomeBloc? _bloc;
+
+  void _showInsertDialog(BuildContext context) async {
+    final result = await showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
@@ -19,10 +33,14 @@ class HomeScreen extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(dialogRadius),
           ),
-          content: const DialogContentNote(title: "Insert New Task"),
+          content: DialogContentNote(title: "Insert New Task"),
         );
       },
     );
+    if (result != null) {
+      final data = result as TaskModel;
+      _bloc?.add(HomeInsertEvent(taskModel: data));
+    }
   }
 
   void _showDeleteAllDialog(BuildContext context) {
@@ -63,6 +81,13 @@ class HomeScreen extends StatelessWidget {
         );
       },
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _bloc = context.read<HomeBloc>();
+    _bloc?.add(HomeInitEvent());
   }
 
   @override
