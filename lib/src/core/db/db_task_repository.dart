@@ -12,7 +12,11 @@ class DbTaskRepository {
   }
 
   Future<void> insertTask(TaskModel taskModel) async {
-    await _taskBox.putAsync(taskModel);
+    await _taskBox.putAsync(taskModel, mode: PutMode.insert);
+  }
+
+  Future<void> updateTask(TaskModel taskModel) async {
+    await _taskBox.putAsync(taskModel, mode: PutMode.update);
   }
 
   Future<void> deleteTask(int id) async {

@@ -15,6 +15,13 @@ class HomeInsertEvent extends HomeEvent {
   List<Object?> get props => [taskModel];
 }
 
+class HomeUpdateEvent extends HomeEvent {
+  HomeUpdateEvent({required this.taskModel});
+  final TaskModel taskModel;
+  @override
+  List<Object?> get props => [taskModel];
+}
+
 class HomeDeleteEvent extends HomeEvent {
   HomeDeleteEvent({required this.id});
   final int id;

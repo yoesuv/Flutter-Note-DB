@@ -8,15 +8,19 @@ class DialogContentNote extends StatelessWidget {
   DialogContentNote({
     super.key,
     this.title,
+    this.taskModel,
   });
 
   final String? title;
+  final TaskModel? taskModel;
 
   final _controllerTitle = TextEditingController();
   final _controllerContent = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    _controllerTitle.text = taskModel?.title ?? "";
+    _controllerContent.text = taskModel?.content ?? "";
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -46,6 +50,7 @@ class DialogContentNote extends StatelessWidget {
               child: AppDialogButton(
                 onPressed: () {
                   final data = TaskModel(
+                    id: taskModel?.id,
                     title: _controllerTitle.text,
                     content: _controllerContent.text,
                   );

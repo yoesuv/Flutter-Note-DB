@@ -9,6 +9,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(const HomeState()) {
     on<HomeInitEvent>(_onInit);
     on<HomeInsertEvent>(_onInsert);
+    on<HomeUpdateEvent>(_onUpdate);
     on<HomeDeleteEvent>(_onDelete);
     on<HomeDeleteAllEvent>(_onDeleteAll);
   }
@@ -28,6 +29,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     Emitter<HomeState> emit,
   ) async {
     await dbTask.insertTask(event.taskModel);
+    final tasks = await dbTask.getListTask();
+    emit(state.copyWith(
+      listTask: tasks,
+    ));
+  }
+
+  void _onUpdate(
+    HomeUpdateEvent event,
+    Emitter<HomeState> emit,
+  ) async {
+    await dbTask.updateTask(event.taskModel);
     final tasks = await dbTask.getListTask();
     emit(state.copyWith(
       listTask: tasks,

@@ -80,6 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
             title: "Menu",
             onEdit: () {
               Navigator.pop(context);
+              _showEditDialog(context, taskModel: task);
             },
             onDelete: () {
               Navigator.pop(context);
@@ -89,6 +90,32 @@ class _HomeScreenState extends State<HomeScreen> {
         );
       },
     );
+  }
+
+  void _showEditDialog(
+    BuildContext context, {
+    TaskModel? taskModel,
+  }) async {
+    final result = await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.zero,
+          surfaceTintColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(dialogRadius),
+          ),
+          content: DialogContentNote(
+            title: "Update Task",
+            taskModel: taskModel,
+          ),
+        );
+      },
+    );
+    if (result != null) {
+      final data = result as TaskModel;
+      _bloc?.add(HomeUpdateEvent(taskModel: data));
+    }
   }
 
   @override
