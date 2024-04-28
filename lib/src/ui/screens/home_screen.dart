@@ -118,19 +118,27 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: BlocBuilder<HomeBloc, HomeState>(
           bloc: _bloc,
-          builder: (context, state) => ListView.separated(
-            itemBuilder: (context, index) {
-              final task = state.listTask[index];
-              return ItemNote(
-                taskModel: task,
-                onTapMenu: () {
-                  _showMenuDialog(context, task);
-                },
-              );
-            },
-            separatorBuilder: (context, index) => const Divider(height: 1),
-            itemCount: state.listTask.length,
-          ),
+          buildWhen: (previous, current) =>
+              previous.listTask != current.listTask ||
+              previous.listTask.length != current.listTask.length,
+          builder: (context, state) {
+            if (state.listTask.isEmpty) {
+              return _emptyTask();
+            }
+            return ListView.separated(
+              itemBuilder: (context, index) {
+                final task = state.listTask[index];
+                return ItemNote(
+                  taskModel: task,
+                  onTapMenu: () {
+                    _showMenuDialog(context, task);
+                  },
+                );
+              },
+              separatorBuilder: (context, index) => const Divider(height: 1),
+              itemCount: state.listTask.length,
+            );
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -140,6 +148,18 @@ class _HomeScreenState extends State<HomeScreen> {
         child: const Icon(
           Icons.add_circle_rounded,
           color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  Widget _emptyTask() {
+    return const Center(
+      child: Text(
+        "Task is Empty",
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );
