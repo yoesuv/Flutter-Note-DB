@@ -9,6 +9,11 @@ Engine • revision e76c956498
 Tools • Dart 3.3.3 • DevTools 2.31.1
 ```
 
+### Screenshot Android ###
+| ![](https://i.imgur.com/qYbFWE1.png) | ![](https://i.imgur.com/EUbXgbg.png) | ![](https://i.imgur.com/cjcbFBI.png) | ![](https://i.imgur.com/pRAccpi.png) |
+| :---: | :---: | :---: | :---: |
+
+
 ### List Library ###
 - [Build Runner](https://pub.dev/packages/build_runner)
 - [Equatable](https://pub.dev/packages/equatable)
