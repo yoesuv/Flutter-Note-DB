@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_note/src/core/data/constants.dart';
 import 'package:flutter_note/src/ui/screens/home_screen.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -44,7 +45,7 @@ class SplashScreen extends StatelessWidget {
       height: Platform.isAndroid ? 33 : 50,
       child: const Center(
         child: Text(
-          "1.0.0",
+          appVersion,
           style: TextStyle(
             color: Colors.black,
             fontSize: 14,
