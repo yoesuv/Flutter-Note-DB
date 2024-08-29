@@ -25,7 +25,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     HomeInsertEvent event,
     Emitter<HomeState> emit,
   ) async {
-    await dbTask.insertTask(event.taskModel);
+    await dbTask.insert(event.taskModel);
     await _loadData(emit);
   }
 
@@ -33,7 +33,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     HomeUpdateEvent event,
     Emitter<HomeState> emit,
   ) async {
-    await dbTask.updateTask(event.taskModel);
+    await dbTask.update(event.taskModel);
     await _loadData(emit);
   }
 
@@ -41,7 +41,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     HomeDeleteEvent event,
     Emitter<HomeState> emit,
   ) async {
-    await dbTask.deleteTask(event.id);
+    await dbTask.delete(event.id);
     await _loadData(emit);
   }
 
@@ -49,7 +49,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     HomeDeleteAllEvent event,
     Emitter<HomeState> emit,
   ) async {
-    await dbTask.deleteAllTask();
+    await dbTask.deleteAll();
     emit(state.copyWith(
       listTask: [],
     ));
@@ -58,7 +58,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   Future<void> _loadData(
     Emitter<HomeState> emit,
   ) async {
-    final tasks = await dbTask.getListTask();
+    final tasks = await dbTask.getAllData();
     emit(state.copyWith(
       listTask: tasks,
     ));

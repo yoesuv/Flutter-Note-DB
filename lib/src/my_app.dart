@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         colorScheme: ColorScheme.fromSeed(
-          background: Colors.white,
+          surface: Colors.white,
           seedColor: Colors.pink,
         ),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(

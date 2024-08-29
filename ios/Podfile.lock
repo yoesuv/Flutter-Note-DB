@@ -1,9 +1,9 @@
 PODS:
   - Flutter (1.0.0)
-  - ObjectBox (1.9.2)
+  - ObjectBox (2.0.0)
   - objectbox_flutter_libs (0.0.1):
     - Flutter
-    - ObjectBox (= 1.9.2)
+    - ObjectBox (= 2.0.0)
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -27,9 +27,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  ObjectBox: 46757a559717ab49b1cc0612eaff82b705acf394
-  objectbox_flutter_libs: 103f3a273b594cb664255086a386740bc179f97d
-  path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
+  ObjectBox: f5319bd9ad2ea960796eff7227e86471867e9ef0
+  objectbox_flutter_libs: c7748f6c6fda47d22f15c8062fb8208063fd948a
+  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
 
 PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
 
