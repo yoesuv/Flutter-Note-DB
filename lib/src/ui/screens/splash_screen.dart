@@ -25,14 +25,12 @@ class SplashScreen extends StatelessWidget {
     _openHome(context);
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: const SafeArea(
         child: Center(
           child: Text(
             "Flutter Note Task",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 24,
-            ),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
           ),
         ),
       ),
@@ -42,14 +40,11 @@ class SplashScreen extends StatelessWidget {
 
   Widget _buildVersion() {
     return SizedBox(
-      height: Platform.isAndroid ? 33 : 50,
+      height: Platform.isAndroid ? 50 : 60,
       child: const Center(
         child: Text(
           appVersion,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 14,
-          ),
+          style: TextStyle(color: Colors.black, fontSize: 14),
         ),
       ),
     );

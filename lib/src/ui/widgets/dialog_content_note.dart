@@ -5,11 +5,7 @@ import 'package:flutter_note/src/ui/widgets/app_textfield.dart';
 import 'package:flutter_note/src/ui/widgets/dialog_title.dart';
 
 class DialogContentNote extends StatelessWidget {
-  DialogContentNote({
-    super.key,
-    this.title,
-    this.taskModel,
-  });
+  DialogContentNote({super.key, this.title, this.taskModel});
 
   final String? title;
   final TaskModel? taskModel;
@@ -26,15 +22,9 @@ class DialogContentNote extends StatelessWidget {
       children: [
         DialogTitle(title: title),
         const SizedBox(height: 16),
-        AppTextField(
-          labelText: "Task Title",
-          controller: _controllerTitle,
-        ),
+        AppTextField(labelText: "Task Title", controller: _controllerTitle),
         const SizedBox(height: 8),
-        AppTextField(
-          labelText: "Task Content",
-          controller: _controllerContent,
-        ),
+        AppTextField(labelText: "Task Content", controller: _controllerContent),
         const SizedBox(height: 16),
         Row(
           children: [

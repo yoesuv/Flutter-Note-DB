@@ -3,12 +3,7 @@ import 'package:flutter_note/src/ui/widgets/app_dialog_button.dart';
 import 'package:flutter_note/src/ui/widgets/dialog_title.dart';
 
 class DialogMenu extends StatelessWidget {
-  const DialogMenu({
-    super.key,
-    this.title,
-    this.onEdit,
-    this.onDelete,
-  });
+  const DialogMenu({super.key, this.title, this.onEdit, this.onDelete});
 
   final String? title;
   final Function()? onEdit;
@@ -23,17 +18,11 @@ class DialogMenu extends StatelessWidget {
         const SizedBox(height: 16),
         SizedBox(
           width: double.infinity,
-          child: AppDialogButton(
-            label: "Edit",
-            onPressed: onEdit,
-          ),
+          child: AppDialogButton(label: "Edit", onPressed: onEdit),
         ),
         SizedBox(
           width: double.infinity,
-          child: AppDialogButton(
-            label: "Delete",
-            onPressed: onDelete,
-          ),
+          child: AppDialogButton(label: "Delete", onPressed: onDelete),
         ),
       ],
     );
