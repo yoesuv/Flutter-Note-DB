@@ -16,9 +16,7 @@ class DialogTitle extends StatelessWidget {
           topRight: Radius.circular(dialogRadius),
         ),
       ),
-      padding: const EdgeInsets.symmetric(
-        vertical: 12,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       child: Center(
         child: Text(
           title ?? "Insert New Task",

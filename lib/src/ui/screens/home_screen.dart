@@ -31,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return AlertDialog(
           contentPadding: EdgeInsets.zero,
           surfaceTintColor: Colors.white,
+          backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(dialogRadius),
           ),
@@ -51,6 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return AlertDialog(
           contentPadding: EdgeInsets.zero,
           surfaceTintColor: Colors.white,
+          backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(dialogRadius),
           ),
@@ -73,6 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return AlertDialog(
           contentPadding: EdgeInsets.zero,
           surfaceTintColor: Colors.white,
+          backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(dialogRadius),
           ),
@@ -92,16 +95,14 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _showEditDialog(
-    BuildContext context, {
-    TaskModel? taskModel,
-  }) async {
+  void _showEditDialog(BuildContext context, {TaskModel? taskModel}) async {
     final result = await showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           contentPadding: EdgeInsets.zero,
           surfaceTintColor: Colors.white,
+          backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(dialogRadius),
           ),
@@ -128,26 +129,25 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("My Task"),
+        title: const Text("My Task", style: TextStyle(color: Colors.white)),
         actions: [
           IconButton(
             onPressed: () {
               _showDeleteAllDialog(context);
             },
-            icon: const Icon(
-              Icons.delete_forever_rounded,
-              color: Colors.white,
-            ),
+            icon: const Icon(Icons.delete_forever_rounded, color: Colors.white),
           ),
         ],
       ),
       body: SafeArea(
         child: BlocBuilder<HomeBloc, HomeState>(
           bloc: _bloc,
-          buildWhen: (previous, current) =>
-              previous.listTask != current.listTask ||
-              previous.listTask.length != current.listTask.length,
+          buildWhen:
+              (previous, current) =>
+                  previous.listTask != current.listTask ||
+                  previous.listTask.length != current.listTask.length,
           builder: (context, state) {
             if (state.listTask.isEmpty) {
               return _emptyTask();
@@ -172,10 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () {
           _showInsertDialog(context);
         },
-        child: const Icon(
-          Icons.add_circle_rounded,
-          color: Colors.white,
-        ),
+        child: const Icon(Icons.add_circle_rounded, color: Colors.white),
       ),
     );
   }
@@ -184,10 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return const Center(
       child: Text(
         "Task is Empty",
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.w500,
-        ),
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
       ),
     );
   }
