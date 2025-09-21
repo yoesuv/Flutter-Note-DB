@@ -110,10 +110,12 @@ obx_int.ModelDefinition getObjectBoxModel() {
         object.id = id;
       },
       objectToFB: (TaskModel object, fb.Builder fbb) {
-        final titleOffset =
-            object.title == null ? null : fbb.writeString(object.title!);
-        final contentOffset =
-            object.content == null ? null : fbb.writeString(object.content!);
+        final titleOffset = object.title == null
+            ? null
+            : fbb.writeString(object.title!);
+        final contentOffset = object.content == null
+            ? null
+            : fbb.writeString(object.content!);
         fbb.startTable(4);
         fbb.addInt64(0, object.id ?? 0);
         fbb.addOffset(1, titleOffset);
