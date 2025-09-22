@@ -20,29 +20,33 @@ export 'package:objectbox/objectbox.dart'; // so that callers only have to impor
 
 final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(1, 7266196025928271874),
-      name: 'TaskModel',
-      lastPropertyId: const obx_int.IdUid(3, 3709202528729098816),
-      flags: 0,
-      properties: <obx_int.ModelProperty>[
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 2194997607384137604),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 9132890942769445686),
-            name: 'title',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 3709202528729098816),
-            name: 'content',
-            type: 9,
-            flags: 0)
-      ],
-      relations: <obx_int.ModelRelation>[],
-      backlinks: <obx_int.ModelBacklink>[])
+    id: const obx_int.IdUid(1, 7266196025928271874),
+    name: 'TaskModel',
+    lastPropertyId: const obx_int.IdUid(3, 3709202528729098816),
+    flags: 0,
+    properties: <obx_int.ModelProperty>[
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(1, 2194997607384137604),
+        name: 'id',
+        type: 6,
+        flags: 1,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(2, 9132890942769445686),
+        name: 'title',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(3, 3709202528729098816),
+        name: 'content',
+        type: 9,
+        flags: 0,
+      ),
+    ],
+    relations: <obx_int.ModelRelation>[],
+    backlinks: <obx_int.ModelBacklink>[],
+  ),
 ];
 
 /// Shortcut for [obx.Store.new] that passes [getObjectBoxModel] and for Flutter
@@ -56,77 +60,92 @@ final _entities = <obx_int.ModelEntity>[
 /// For Flutter apps, also calls `loadObjectBoxLibraryAndroidCompat()` from
 /// the ObjectBox Flutter library to fix loading the native ObjectBox library
 /// on Android 6 and older.
-Future<obx.Store> openStore(
-    {String? directory,
-    int? maxDBSizeInKB,
-    int? maxDataSizeInKB,
-    int? fileMode,
-    int? maxReaders,
-    bool queriesCaseSensitiveDefault = true,
-    String? macosApplicationGroup}) async {
+Future<obx.Store> openStore({
+  String? directory,
+  int? maxDBSizeInKB,
+  int? maxDataSizeInKB,
+  int? fileMode,
+  int? maxReaders,
+  bool queriesCaseSensitiveDefault = true,
+  String? macosApplicationGroup,
+}) async {
   await loadObjectBoxLibraryAndroidCompat();
-  return obx.Store(getObjectBoxModel(),
-      directory: directory ?? (await defaultStoreDirectory()).path,
-      maxDBSizeInKB: maxDBSizeInKB,
-      maxDataSizeInKB: maxDataSizeInKB,
-      fileMode: fileMode,
-      maxReaders: maxReaders,
-      queriesCaseSensitiveDefault: queriesCaseSensitiveDefault,
-      macosApplicationGroup: macosApplicationGroup);
+  return obx.Store(
+    getObjectBoxModel(),
+    directory: directory ?? (await defaultStoreDirectory()).path,
+    maxDBSizeInKB: maxDBSizeInKB,
+    maxDataSizeInKB: maxDataSizeInKB,
+    fileMode: fileMode,
+    maxReaders: maxReaders,
+    queriesCaseSensitiveDefault: queriesCaseSensitiveDefault,
+    macosApplicationGroup: macosApplicationGroup,
+  );
 }
 
 /// Returns the ObjectBox model definition for this project for use with
 /// [obx.Store.new].
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
-      entities: _entities,
-      lastEntityId: const obx_int.IdUid(1, 7266196025928271874),
-      lastIndexId: const obx_int.IdUid(0, 0),
-      lastRelationId: const obx_int.IdUid(0, 0),
-      lastSequenceId: const obx_int.IdUid(0, 0),
-      retiredEntityUids: const [],
-      retiredIndexUids: const [],
-      retiredPropertyUids: const [],
-      retiredRelationUids: const [],
-      modelVersion: 5,
-      modelVersionParserMinimum: 5,
-      version: 1);
+    entities: _entities,
+    lastEntityId: const obx_int.IdUid(1, 7266196025928271874),
+    lastIndexId: const obx_int.IdUid(0, 0),
+    lastRelationId: const obx_int.IdUid(0, 0),
+    lastSequenceId: const obx_int.IdUid(0, 0),
+    retiredEntityUids: const [],
+    retiredIndexUids: const [],
+    retiredPropertyUids: const [],
+    retiredRelationUids: const [],
+    modelVersion: 5,
+    modelVersionParserMinimum: 5,
+    version: 1,
+  );
 
   final bindings = <Type, obx_int.EntityDefinition>{
     TaskModel: obx_int.EntityDefinition<TaskModel>(
-        model: _entities[0],
-        toOneRelations: (TaskModel object) => [],
-        toManyRelations: (TaskModel object) => {},
-        getId: (TaskModel object) => object.id,
-        setId: (TaskModel object, int id) {
-          object.id = id;
-        },
-        objectToFB: (TaskModel object, fb.Builder fbb) {
-          final titleOffset =
-              object.title == null ? null : fbb.writeString(object.title!);
-          final contentOffset =
-              object.content == null ? null : fbb.writeString(object.content!);
-          fbb.startTable(4);
-          fbb.addInt64(0, object.id ?? 0);
-          fbb.addOffset(1, titleOffset);
-          fbb.addOffset(2, contentOffset);
-          fbb.finish(fbb.endTable());
-          return object.id ?? 0;
-        },
-        objectFromFB: (obx.Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-          final idParam =
-              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 4);
-          final titleParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGetNullable(buffer, rootOffset, 6);
-          final contentParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGetNullable(buffer, rootOffset, 8);
-          final object =
-              TaskModel(id: idParam, title: titleParam, content: contentParam);
+      model: _entities[0],
+      toOneRelations: (TaskModel object) => [],
+      toManyRelations: (TaskModel object) => {},
+      getId: (TaskModel object) => object.id,
+      setId: (TaskModel object, int id) {
+        object.id = id;
+      },
+      objectToFB: (TaskModel object, fb.Builder fbb) {
+        final titleOffset = object.title == null
+            ? null
+            : fbb.writeString(object.title!);
+        final contentOffset = object.content == null
+            ? null
+            : fbb.writeString(object.content!);
+        fbb.startTable(4);
+        fbb.addInt64(0, object.id ?? 0);
+        fbb.addOffset(1, titleOffset);
+        fbb.addOffset(2, contentOffset);
+        fbb.finish(fbb.endTable());
+        return object.id ?? 0;
+      },
+      objectFromFB: (obx.Store store, ByteData fbData) {
+        final buffer = fb.BufferContext(fbData);
+        final rootOffset = buffer.derefObject(0);
+        final idParam = const fb.Int64Reader().vTableGetNullable(
+          buffer,
+          rootOffset,
+          4,
+        );
+        final titleParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGetNullable(buffer, rootOffset, 6);
+        final contentParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGetNullable(buffer, rootOffset, 8);
+        final object = TaskModel(
+          id: idParam,
+          title: titleParam,
+          content: contentParam,
+        );
 
-          return object;
-        })
+        return object;
+      },
+    ),
   };
 
   return obx_int.ModelDefinition(model, bindings);
@@ -135,14 +154,17 @@ obx_int.ModelDefinition getObjectBoxModel() {
 /// [TaskModel] entity fields to define ObjectBox queries.
 class TaskModel_ {
   /// See [TaskModel.id].
-  static final id =
-      obx.QueryIntegerProperty<TaskModel>(_entities[0].properties[0]);
+  static final id = obx.QueryIntegerProperty<TaskModel>(
+    _entities[0].properties[0],
+  );
 
   /// See [TaskModel.title].
-  static final title =
-      obx.QueryStringProperty<TaskModel>(_entities[0].properties[1]);
+  static final title = obx.QueryStringProperty<TaskModel>(
+    _entities[0].properties[1],
+  );
 
   /// See [TaskModel.content].
-  static final content =
-      obx.QueryStringProperty<TaskModel>(_entities[0].properties[2]);
+  static final content = obx.QueryStringProperty<TaskModel>(
+    _entities[0].properties[2],
+  );
 }

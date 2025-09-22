@@ -1,9 +1,9 @@
 PODS:
   - Flutter (1.0.0)
-  - ObjectBox (4.1.0)
+  - ObjectBox (4.4.1)
   - objectbox_flutter_libs (0.0.1):
     - Flutter
-    - ObjectBox (= 4.1.0)
+    - ObjectBox (= 4.4.1)
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -26,11 +26,11 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
 
 SPEC CHECKSUMS:
-  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  ObjectBox: bf3d4b51075d52868422d5d1f2f2141b1d630d30
-  objectbox_flutter_libs: e912f15beff5699f1e184dbd2ff6aa5657464e73
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  ObjectBox: 7da4aceb5013d041bfafdbc6d744a26918b09757
+  objectbox_flutter_libs: 09b1dec1b4cd27bf1a5f9bae7ccaa7e43588bf31
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
 
-PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
+PODFILE CHECKSUM: 4f1c12611da7338d21589c0b2ecd6bd20b109694
 
 COCOAPODS: 1.16.2

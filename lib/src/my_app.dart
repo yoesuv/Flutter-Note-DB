@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Note Task',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
-          color: Colors.pink,
+          backgroundColor: Colors.pink,
           centerTitle: false,
           titleTextStyle: TextStyle(
             color: Colors.white,
