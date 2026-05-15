@@ -8,30 +8,33 @@ class AppRoute {
   static Route<dynamic> routes(RouteSettings settings) {
     switch (settings.name) {
       case "/":
-        return MaterialPageRoute(builder: (context) {
-          return const SplashScreen();
-        });
+        return MaterialPageRoute(
+          builder: (context) {
+            return const SplashScreen();
+          },
+        );
       case HomeScreen.routeName:
-        return MaterialPageRoute(builder: (context) {
-          return BlocProvider(
-            create: (context) => HomeBloc(),
-            child: const HomeScreen(),
-          );
-        });
+        return MaterialPageRoute(
+          builder: (context) {
+            return BlocProvider(
+              create: (context) => HomeBloc(),
+              child: const HomeScreen(),
+            );
+          },
+        );
       default:
-        return MaterialPageRoute(builder: (context) {
-          return const Scaffold(
-            body: Center(
-              child: Text(
-                "Page Not Found",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+        return MaterialPageRoute(
+          builder: (context) {
+            return const Scaffold(
+              body: Center(
+                child: Text(
+                  "Page Not Found",
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ),
-            ),
-          );
-        });
+            );
+          },
+        );
     }
   }
 }

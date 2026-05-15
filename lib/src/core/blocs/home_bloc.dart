@@ -14,53 +14,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeDeleteAllEvent>(_onDeleteAll);
   }
 
-  void _onInit(
-    HomeInitEvent event,
-    Emitter<HomeState> emit,
-  ) async {
+  void _onInit(HomeInitEvent event, Emitter<HomeState> emit) async {
     await _loadData(emit);
   }
 
-  void _onInsert(
-    HomeInsertEvent event,
-    Emitter<HomeState> emit,
-  ) async {
+  void _onInsert(HomeInsertEvent event, Emitter<HomeState> emit) async {
     await dbTask.insert(event.taskModel);
     await _loadData(emit);
   }
 
-  void _onUpdate(
-    HomeUpdateEvent event,
-    Emitter<HomeState> emit,
-  ) async {
+  void _onUpdate(HomeUpdateEvent event, Emitter<HomeState> emit) async {
     await dbTask.update(event.taskModel);
     await _loadData(emit);
   }
 
-  void _onDelete(
-    HomeDeleteEvent event,
-    Emitter<HomeState> emit,
-  ) async {
+  void _onDelete(HomeDeleteEvent event, Emitter<HomeState> emit) async {
     await dbTask.delete(event.id);
     await _loadData(emit);
   }
 
-  void _onDeleteAll(
-    HomeDeleteAllEvent event,
-    Emitter<HomeState> emit,
-  ) async {
+  void _onDeleteAll(HomeDeleteAllEvent event, Emitter<HomeState> emit) async {
     await dbTask.deleteAll();
-    emit(state.copyWith(
-      listTask: [],
-    ));
+    emit(state.copyWith(listTask: []));
   }
 
-  Future<void> _loadData(
-    Emitter<HomeState> emit,
-  ) async {
+  Future<void> _loadData(Emitter<HomeState> emit) async {
     final tasks = await dbTask.getAllData();
-    emit(state.copyWith(
-      listTask: tasks,
-    ));
+    emit(state.copyWith(listTask: tasks));
   }
 }
