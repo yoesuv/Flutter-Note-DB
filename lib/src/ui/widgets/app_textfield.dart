@@ -18,10 +18,7 @@ class AppTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
-      style: const TextStyle(
-        color: Colors.black,
-        fontSize: 14,
-      ),
+      style: const TextStyle(color: Colors.black, fontSize: 14),
       decoration: InputDecoration(
         labelText: labelText,
         labelStyle: const TextStyle(fontSize: 14),

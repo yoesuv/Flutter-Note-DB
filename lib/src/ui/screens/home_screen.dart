@@ -144,10 +144,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: BlocBuilder<HomeBloc, HomeState>(
           bloc: _bloc,
-          buildWhen:
-              (previous, current) =>
-                  previous.listTask != current.listTask ||
-                  previous.listTask.length != current.listTask.length,
+          buildWhen: (previous, current) =>
+              previous.listTask != current.listTask ||
+              previous.listTask.length != current.listTask.length,
           builder: (context, state) {
             if (state.listTask.isEmpty) {
               return _emptyTask();
